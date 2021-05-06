@@ -1,0 +1,8 @@
+# activate virtual env
+source issue-tracker-env/activate
+
+# start server (from mysite dir)
+python manage.py runserver 
+
+# create django project
+django-admin startproject mysite
