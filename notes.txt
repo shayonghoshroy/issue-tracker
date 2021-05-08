@@ -2,7 +2,10 @@
 source issue-tracker-env/activate
 
 # start server (from mysite dir)
-python manage.py runserver 
+python manage.py runserver
+
+# create new app
+python manage.py startapp <name>
 
 # create django project
 django-admin startproject mysite
