@@ -12,6 +12,7 @@ python manage.py runserver
 python manage.py makemigrations <app-name>  # stage changes
 python manage.py migrate  # apply changes
 
+
 # run after changing settings.py
 python manage.py migrate
 

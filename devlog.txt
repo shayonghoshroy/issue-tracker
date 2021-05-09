@@ -1,0 +1,9 @@
+1. django downloaded and initialized
+2. created "main" application
+3. created the ToDo list view, url, and model, created the Item model
+4. created ToDo lists with several items each, saved to SQL, visualized on website
+    bug: website did not load todo list because I forgot to migrate changes
+5. created first admin account
+6. registered ToDo list and Item models to admin dashboard
+7. created templates folder to store html files for each application
+8. created base.html file to be inherited by all other html files
