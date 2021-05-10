@@ -16,5 +16,14 @@ def home(response):
 
 # user creates todo list
 def create(response):
-    form = CreateNewList()
+    if response.method == "POST":
+        # response.POST is a dict of input attributes
+        form = CreateNewList(response.POST)
+
+        if form.is_valid():
+            n = form.cleaned_data["name"] # access a value from key
+            t = ToDoList(name=n)
+            t.save()
+    else:
+        form = CreateNewList()
     return render(response, "main/create.html", {"form":form})
