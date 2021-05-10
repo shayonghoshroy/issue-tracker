@@ -8,3 +8,4 @@
 7. created templates folder to store html files for each application
 8. created base.html file to be inherited by all other html files
 9. created list.html to display name and contents of todo list
+10. created a from to allow users to create to do lists

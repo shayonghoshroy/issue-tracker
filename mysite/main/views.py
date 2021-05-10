@@ -12,3 +12,7 @@ def index(response, name):
 
 def home(response):
     return render(response, "main/home.html", {})
+
+# user creates todo list
+def create(response):
+    return render(response, "main/create.html", {})
