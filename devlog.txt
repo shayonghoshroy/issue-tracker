@@ -13,4 +13,6 @@
 11. created a http redirect from create list to view the created todo list
     bug: URL was originally showing the name of the list, but now it displays ID
          to ensure user privacy
-    
+12. custom form for item input
+        bug: user input not yet validated
+13. added sidebar for website navigation
