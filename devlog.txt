@@ -10,3 +10,7 @@
 9. created list.html to display name and contents of todo list
 10. created a form to allow users to create to do lists and stored them in SQL
     bug: form did not submit because I was not generating a CSRF token each time
+11. created a http redirect from create list to view the created todo list
+    bug: URL was originally showing the name of the list, but now it displays ID
+         to ensure user privacy
+    
