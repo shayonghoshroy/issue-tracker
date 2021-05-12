@@ -18,3 +18,4 @@
 13. added sidebar for website navigation
 14. added boostrap functionality
 15. added static title header to base.html
+16. added boostrap theme to view tab (list.html)
