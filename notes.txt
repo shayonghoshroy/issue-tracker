@@ -53,5 +53,9 @@ username = shayon
 email = sghoshroy21@gmail.com
 password = sg12433233
 
+### Account
+username = shayong
+pass = sg12433233
+
 # create a super user
 python manage.py createsuperuser

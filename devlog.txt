@@ -14,9 +14,12 @@
     bug: URL was originally showing the name of the list, but now it displays ID
          to ensure user privacy
 12. custom form for item input
-        bug: user input not yet validated
+        TODO: user input not yet validated
 13. added sidebar for website navigation
 14. added bootstrap functionality
 15. added static title header to base.html
 16. added bootstrap theme to view tab (list.html)
 17. created "register" application for user account creation
+18. created register.html
+    TODO: Add sign in thru Google, Facebook, and Apple? option
+19. added new account registration 
