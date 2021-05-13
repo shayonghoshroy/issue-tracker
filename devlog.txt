@@ -25,3 +25,4 @@
 19. added new account registration
 20. added email field to new account registration
 21. added crispy forms to register.html
+22. created login.html 
