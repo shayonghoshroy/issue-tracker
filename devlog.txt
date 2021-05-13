@@ -24,3 +24,4 @@
     TODO: Add sign in thru Google, Facebook, and Apple? option
 19. added new account registration
 20. added email field to new account registration
+21. added crispy forms to register.html
