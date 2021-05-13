@@ -22,4 +22,5 @@
 17. created "register" application for user account creation
 18. created register.html
     TODO: Add sign in thru Google, Facebook, and Apple? option
-19. added new account registration 
+19. added new account registration
+20. added email field to new account registration
