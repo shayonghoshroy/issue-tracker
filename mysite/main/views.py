@@ -6,6 +6,9 @@ from . forms import CreateNewList
 # Create your views here.
 
 def index(response, id):
+    if not response.user.is_authenticated:
+        return HttpResponseRedirect("/login/")
+        
     ls = ToDoList.objects.get(id=id)
 
     if response.method == "POST":
@@ -30,10 +33,16 @@ def index(response, id):
     #return HttpResponse("<h1>%s</h1><br></br><p>%s</p>" % (ls, item))
 
 def home(response):
+    if not response.user.is_authenticated:
+        return HttpResponseRedirect("/login/")
+
     return render(response, "main/home.html", {})
 
 # user creates todo list
 def create(response):
+    if not response.user.is_authenticated:
+        return HttpResponseRedirect("/login/")
+
     if response.method == "POST":
         # response.POST is a dict of input attributes
         form = CreateNewList(response.POST)

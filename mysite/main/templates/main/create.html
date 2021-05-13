@@ -3,16 +3,20 @@
 {% block title %}Create To Do{% endblock %}
 
 {% block content %}
-<h3>Create</h3>
-<form method="post" action="/create/" class="form-group">
-    {% csrf_token %}
-    <div class="input-group mb-3">
+    {% if user.is_authenticated %}
+        <h3>Create</h3>
+        <form method="post" action="/create/" class="form-group">
+            {% csrf_token %}
+            <div class="input-group mb-3">
 
-        <div class="input-group.append">
-            {{form.name}}
-            <button type="submit", name="save" class="btn btn-success">Create New</button>
-        </div>
+                <div class="input-group.append">
+                    {{form.name}}
+                    <button type="submit", name="save" class="btn btn-success">Create New</button>
+                </div>
 
-    </div>
-</form>
+            </div>
+        </form>
+    {% else %}
+            <p>Login <a href="/login">here.</a></p>
+    {% endif %}
 {% endblock %}
