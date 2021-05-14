@@ -31,6 +31,7 @@ for each user (this adds user-specific todo lists)
 25. changed the "create" view: each todolist is now saved only to user that created it
 26. updated view page to list links for each todolist
 27. changed "index" view to only display a todolist if it exists in user's db
+28. added logout button and redirected logout page to login page
 
 TODO: add grey out to completed items
 TODO: add trash can to delete items and todolists
