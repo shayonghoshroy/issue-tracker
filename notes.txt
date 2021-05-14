@@ -54,6 +54,10 @@ t.item_set.create(text="finish drink", complete=False) # t is ToDoList object
 # print all objects within a set
 t.item_set.all() # t is ToDoList object, item is the child table of a foreign key
 
+# delete specific object within a set
+i = ToDoList.objects.get(id=1)
+ .item_set.get(text="one").delete()
+
 ### ADMIN
 username = shayon
 email = sghoshroy21@gmail.com

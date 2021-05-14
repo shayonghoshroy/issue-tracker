@@ -22,3 +22,39 @@ class Item(models.Model):
 
     def __str__(self):
         return self.text
+
+class Project(models.Model):
+    pass
+
+class Issue(models.Model):
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    type = models.CharField(
+        max_length = 4,
+        choices = (
+            ("task", "task"),
+            ("bug", "bug"),
+        ),
+        default = "task"
+    )
+    priority = models.CharField(
+        max_length = 7,
+        choices = (
+            ("blocker", "blocker"),
+            ("major", "major"),
+            ("minor", "minor"),
+        ),
+        default = "minor"
+    )
+    status = models.CharField(
+        max_length = 11,
+        choices = (
+            ("assigned", "assigned"),
+            ("in-progress", "in-progress"),
+            ("resolved", "resolved"),
+        ),
+        default = "assigned"
+    )
+    creator = models.CharField(max_length=200)
+    assignee = models.CharField(max_length=200)
+    date_created = models.DateField(auto_now_add=True)
+    date_updated = models.DateField(auto_now=True)

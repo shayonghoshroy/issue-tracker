@@ -45,13 +45,13 @@ Jira: https://www.youtube.com/watch?v=xrCJv0fTyR8
     type (tasks, bugs)
     priority
     status (assigned / in progress / resolved)
+    creator
     assignee
-    submiter
     date of creation
     last update date
-    comment section (with date)
-    full history of issue changes
-    add attachments (images, text, data, links, etc...)
+    TODO: comment section (with date)
+    TODO: full history of issue changes
+    TODO: add attachments (images, text, data, links, etc...)
 - Search
     filter by project name
     filter by issue type
@@ -77,16 +77,9 @@ YT demo:
         edit ticket
 
 HIERARCHY
-
 project has a
     To Do list which is a set of
         issues
-
-
-
-
-
-
 
 TODO: remove side bar and put everythin in top? looks ugly on mobile and blocks elements
 TODO: add grey out to completed items
