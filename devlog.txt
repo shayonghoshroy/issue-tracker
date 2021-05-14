@@ -33,6 +33,62 @@ for each user (this adds user-specific todo lists)
 27. changed "index" view to only display a todolist if it exists in user's db
 28. added logout button and redirected logout page to login page
 
+FEATURES
+--------
+Jira: https://www.youtube.com/watch?v=xrCJv0fTyR8
+- home dashboard:
+    activity stream
+    bugs assigned to me
+    days remaining (to next milestone?)
+- Issues
+    parent project
+    type (tasks, bugs)
+    priority
+    status (assigned / in progress / resolved)
+    assignee
+    submiter
+    date of creation
+    last update date
+    comment section (with date)
+    full history of issue changes
+    add attachments (images, text, data, links, etc...)
+- Search
+    filter by project name
+    filter by issue type
+    filter by status
+    filter by asignee
+    search by text
+    MAYBE allow users to see the search filter so that they can message others
+- Sprint Tracking
+    list of issues in calendar order (status of issue determines color)
+
+YT demo:
+- User categories
+    admin
+    project manager:
+        see all project
+            for each:
+                name, description
+                manage user roles (and see all users in database)
+                click to expand details
+                    see all assigned people
+                    see all issues for project
+    developer:
+        edit ticket
+
+HIERARCHY
+
+project has a
+    To Do list which is a set of
+        issues
+
+
+
+
+
+
+
+TODO: remove side bar and put everythin in top? looks ugly on mobile and blocks elements
 TODO: add grey out to completed items
 TODO: add trash can to delete items and todolists
 TODO: Add sign in thru Google, Facebook, and Apple? option

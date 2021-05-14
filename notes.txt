@@ -6,6 +6,12 @@ source issue-tracker-env/activate
 # start server (from mysite dir)
 python manage.py runserver
 
+# start server and broadcast to entire network
+python manage.py runserver 0.0.0.0:8000
+
+# load website from LAN
+10.35.119.7:8000
+
 ### UPDATE ###
 
 # run after changing models.py
