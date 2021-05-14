@@ -14,16 +14,31 @@
     bug: URL was originally showing the name of the list, but now it displays ID
          to ensure user privacy
 12. custom form for item input
-        TODO: user input not yet validated
 13. added sidebar for website navigation
 14. added bootstrap functionality
 15. added static title header to base.html
 16. added bootstrap theme to view tab (list.html)
 17. created "register" application for user account creation
 18. created register.html
-    TODO: Add sign in thru Google, Facebook, and Apple? option
+
 19. added new account registration
 20. added email field to new account registration
 21. added crispy forms to register.html
 22. created login.html
 23. added user authentication to home, create, and view
+24. added a foregin key in ToDoList to User in order to create an todolist_set
+for each user (this adds user-specific todo lists)
+25. changed the "create" view: each todolist is now saved only to user that created it
+26. updated view page to list links for each todolist
+27. changed "index" view to only display a todolist if it exists in user's db
+
+TODO: add grey out to completed items
+TODO: add trash can to delete items and todolists
+TODO: Add sign in thru Google, Facebook, and Apple? option
+TODO: logout button
+TODO: user input not yet validated
+TODO: make 404 page
+TODO: make user-specific pages more secure? Tim said the if statement is not enough
+
+BUG: when creating account, we are redirected to login page!
+BUG: when adding empty item to todolist, no error message appears

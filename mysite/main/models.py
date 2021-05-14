@@ -1,9 +1,12 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here. (relation for database)
 
 # todo list object containing item objects
 class ToDoList(models.Model):
+    #related_name is name when accessing from related object(user)
+    user= models.ForeignKey(User, on_delete=models.CASCADE, related_name="todolist", null=True)
     name = models.CharField(max_length=200)
 
     def __str__(self):  # override built in toString
@@ -13,7 +16,7 @@ class ToDoList(models.Model):
 class Item(models.Model):
     # create item_set for each ToDoList
     todolist = models.ForeignKey(ToDoList, on_delete=models.CASCADE)
-    
+
     text = models.CharField(max_length=300)
     complete = models.BooleanField()
 
