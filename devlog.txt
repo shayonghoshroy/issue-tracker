@@ -40,6 +40,13 @@ Jira: https://www.youtube.com/watch?v=xrCJv0fTyR8
     activity stream
     bugs assigned to me
     days remaining (to next milestone?)
+- Project
+    name
+    description
+    creator
+    date of creation
+    TODO: many - one relationshop from project to users (we need a list of users)
+    TODO: change creator and assignee to be User type
 - Issues
     parent project
     type (tasks, bugs)
@@ -52,6 +59,8 @@ Jira: https://www.youtube.com/watch?v=xrCJv0fTyR8
     TODO: comment section (with date)
     TODO: full history of issue changes
     TODO: add attachments (images, text, data, links, etc...)
+
+    PRIMARY KEY = id #cite tristan in the docs
 - Search
     filter by project name
     filter by issue type

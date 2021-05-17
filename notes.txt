@@ -58,6 +58,12 @@ t.item_set.all() # t is ToDoList object, item is the child table of a foreign ke
 i = ToDoList.objects.get(id=1)
  .item_set.get(text="one").delete()
 
+# create Project
+p = Project(name="IssueTracker", description="Website that tracks issues.",creator="shayon")
+
+# create Issue
+i = Issue(project=Project.objects.get(id=1), type="task", priority="blocker",status="assigned",creator="shayon", assignee="tristan")
+
 ### ADMIN
 username = shayon
 email = sghoshroy21@gmail.com
