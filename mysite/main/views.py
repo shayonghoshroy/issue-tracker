@@ -64,6 +64,23 @@ def create(response):
         form = CreateNewList()
     return render(response, "main/create.html", {"form":form})
 
+def project(response):
+    if not response.user.is_authenticated:
+        return HttpResponseRedirect("/login/")
+
+    if response.method == "POST":
+        form = CreateNewList(response.POST)
+        if form.is_valid():
+            n = form.cleaned_data["name"]
+            d = form.cleaned_data["description"]
+            p = Project(name=n, description=d)
+            p.save()
+            response.user.project.add(p)
+        return HttpResponseRedirect("/") # TODO: redirect to project view
+    else:
+        form = CreateNewList()
+    return render(response, "main/project.html", {"form":form})
+
 def view(response):
     if not response.user.is_authenticated:
         return HttpResponseRedirect("/login/")

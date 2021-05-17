@@ -30,7 +30,7 @@ class Item(models.Model):
 class Project(models.Model):
     name = models.CharField(max_length=200)
     description = models.CharField(max_length=1000)
-    creator = models.CharField(max_length=200)
+    creator = models.ForeignKey(User, on_delete=models.CASCADE, related_name="project", null=True)
     date_created = DateTimeField(editable=False)
 
     def save(self, *args, **kwargs):
@@ -71,7 +71,7 @@ class Issue(models.Model):
         ),
         default = "assigned"
     )
-    creator = models.CharField(max_length=200)
+    assigner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="issue", null=True)
     assignee = models.CharField(max_length=200)
     date_created = models.DateTimeField(editable=False)
     date_updated = models.DateTimeField()
@@ -85,4 +85,3 @@ class Issue(models.Model):
 
     def __str__(self):
         return str(self.date_created)
-        #return self.type

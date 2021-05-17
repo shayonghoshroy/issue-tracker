@@ -5,5 +5,8 @@ Issue
 {% endblock %}
 
 {% block content %}
-Issue
+    {% if user.is_authenticated %}
+    {% else %}
+            <p>Login <a href="/login">here.</a></p>
+    {% endif %}
 {% endblock %}
