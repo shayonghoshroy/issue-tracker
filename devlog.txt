@@ -33,6 +33,11 @@ for each user (this adds user-specific todo lists)
 27. changed "index" view to only display a todolist if it exists in user's db
 28. added logout button and redirected logout page to login page
 
+PAGES
+-----
+Create Project
+    TODO: create custom form for creating a new project
+
 FEATURES
 --------
 Jira: https://www.youtube.com/watch?v=xrCJv0fTyR8

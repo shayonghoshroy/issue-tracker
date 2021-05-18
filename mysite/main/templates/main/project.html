@@ -7,15 +7,18 @@ Project
 {% block content %}
     <h3>Create Project</h3>
     {% if user.is_authenticated %}
-    <form method="post" action="/create/" class="form-group">
-            {% csrf_token %}
-            <div class="input-group mb-3">
-                <div class="input-group.append">
-                    <p>Name: {{form.name}} </p>
-                    <p>Description: {{form.description}}</p>
-                    <button type="submit", name="save" class="btn btn-success">Create Project</button>
-                </div>
+        <br>
+        <form>
+            <div class="form-group">
+                <label for="exampleProjectName1">Name</label>
+                <input type="text" class="form-control" id="exampleProjectName1" aria-describedby="nameHelp" placeholder="Enter a project name">
             </div>
+            <div class="form-group">
+                <label for="exampleProjectDescription1">Description</label>
+                <input type="text" class="form-control" id="exampleDescriptionName1" aria-describedby="descriptionHelp" placeholder="Describe your project">
+            </div>
+
+            
         </form>
     {% else %}
             <p>Login <a href="/login">here.</a></p>
