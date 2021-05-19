@@ -78,6 +78,12 @@ python manage.py createsuperuser
 
 ### TECHNOLOGIES USED IN THIS PROJECT
 
+Full Stack Web Development:
+    JavaScript
+    HTML/CSS
+    Python
+    Django
+    SQL
 jQuery
 Bootstrap
 sqlite3

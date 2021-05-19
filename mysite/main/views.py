@@ -71,13 +71,10 @@ def project(response):
         return HttpResponseRedirect("/login/")
 
     if response.method == "POST":
-        print(response.POST)
         if response.POST.get("save"):
             name = response.POST.get("name")
             description = response.POST.get("description")
-            print(response.POST.getlist("members"))
-
-
+            members = response.POST.getlist("members")
 
         return HttpResponseRedirect("/") # TODO: redirect to project view
     else:

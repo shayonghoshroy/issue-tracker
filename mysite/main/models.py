@@ -1,7 +1,9 @@
 from django.db import models
-from django.db.models import DateTimeField
+from django.db.models import DateTimeField, JSONField
 from django.contrib.auth.models import User
 from django.utils import timezone
+
+
 
 # Create your models here. (relation for database)
 
@@ -32,6 +34,7 @@ class Project(models.Model):
     description = models.CharField(max_length=1000)
     creator = models.ForeignKey(User, on_delete=models.CASCADE, related_name="project", null=True)
     date_created = DateTimeField(editable=False)
+    members = JSONField() # missing a default
 
     def save(self, *args, **kwargs):
         ''' On save, update timestamps '''
