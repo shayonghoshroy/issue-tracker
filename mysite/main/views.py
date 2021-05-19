@@ -79,6 +79,7 @@ def project(response):
         return HttpResponseRedirect("/") # TODO: redirect to project view
     else:
         form = CreateNewList()
+
     return render(response, "main/project.html", {"form":form})
 
 def view(response):
