@@ -2,6 +2,7 @@ from django.db import models
 from django.db.models import DateTimeField, JSONField
 from django.contrib.auth.models import User
 from django.utils import timezone
+import json
 
 
 
@@ -34,14 +35,14 @@ class Project(models.Model):
     description = models.CharField(max_length=1000)
     creator = models.ForeignKey(User, on_delete=models.CASCADE, related_name="project", null=True)
     date_created = DateTimeField(editable=False)
-    members = JSONField() # missing a default
+    members = JSONField(default=list)
 
     def save(self, *args, **kwargs):
         ''' On save, update timestamps '''
         if not self.id:
             self.date_created = timezone.now()
         self.date_updated = timezone.now()
-        return super(Issue, self).save(*args, **kwargs)
+        return super(Project, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.name

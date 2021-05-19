@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from . models import ToDoList, Item, Project, Issue
 from . forms import CreateNewList
 from django.contrib.auth import get_user_model
+import json
 
 # Create your views here.
 
@@ -72,9 +73,17 @@ def project(response):
 
     if response.method == "POST":
         if response.POST.get("save"):
-            name = response.POST.get("name")
-            description = response.POST.get("description")
-            members = response.POST.getlist("members")
+            my_name = response.POST.get("name")
+            my_description = response.POST.get("description")
+            my_members_list = response.POST.getlist("members")
+            # if the creator did not add theirself, then add them
+            if response.user.username not in my_members_list:
+                my_members_list.append(response.user.username)
+
+            project = Project(name=my_name, description=my_description,
+                creator=response.user, members=my_members_list)
+            project.save()
+            response.user.project.add(project)
 
         return HttpResponseRedirect("/") # TODO: redirect to project view
     else:
@@ -84,6 +93,7 @@ def project(response):
     User = get_user_model()
     users = User.objects.all()
     return render(response, "main/project.html", {"form":form, "users": users})
+
 
 def view(response):
     if not response.user.is_authenticated:

@@ -35,7 +35,9 @@ for each user (this adds user-specific todo lists)
 29. created Project and Issue models
     bug: date fields were not updating, so I overrode the save function to save dates manually
 30. installed bootstrap-select
-31. created project.html to create a new project
+31. created project.html to create a new project with a name, description,
+and a multiple selector dropdown that allows people to search and add all project members
+32. updated project view to create a new project when form is filled at project.html
 
 PAGES
 -----
