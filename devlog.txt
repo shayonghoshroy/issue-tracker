@@ -32,6 +32,9 @@ for each user (this adds user-specific todo lists)
 26. updated view page to list links for each todolist
 27. changed "index" view to only display a todolist if it exists in user's db
 28. added logout button and redirected logout page to login page
+29. created Project and Issue models
+    bug: date fields were not updating, so I overrode the save function to save dates manually
+30. installed bootstrap-select
 
 PAGES
 -----

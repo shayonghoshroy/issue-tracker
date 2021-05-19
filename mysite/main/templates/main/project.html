@@ -17,10 +17,12 @@ Project
                 <label for="exampleProjectDescription1">Description</label>
                 <input type="text" class="form-control" id="exampleDescriptionName1" aria-describedby="descriptionHelp" placeholder="Describe your project">
             </div>
-            <select class="selectpicker" multiple>
-                <option>Mustard</option>
-                <option>Ketchup</option>
-                <option>Relish</option>
+            <label for="exampleMember1">Members</label>
+            <br>
+            <select class="selectpicker" multiple title="Select members..." multiple data-live-search="true">
+                {% for user in users %}
+                    <option>{{user}}</option>
+                {% endfor %}
             </select>
         </form>
     {% else %}

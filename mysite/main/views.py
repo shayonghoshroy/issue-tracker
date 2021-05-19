@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from . models import ToDoList, Item
 from . forms import CreateNewList
+from django.contrib.auth import get_user_model
 
 # Create your views here.
 
@@ -80,7 +81,11 @@ def project(response):
     else:
         form = CreateNewList()
 
-    return render(response, "main/project.html", {"form":form})
+    # get all users
+    User = get_user_model()
+    users = User.objects.all()
+
+    return render(response, "main/project.html", {"form":form, "users": users})
 
 def view(response):
     if not response.user.is_authenticated:
