@@ -22,7 +22,7 @@ Project
             <br>
             <select class="selectpicker" name="members" id="members" multiple title="Select members..." multiple data-live-search="true">
                 {% for user in users %}
-                    <option value="{{user.id}}">{{user}}</option>
+                    <option value="{{user.username}}">{{user}}</option>
                 {% endfor %}
             </select>
             <br></br>

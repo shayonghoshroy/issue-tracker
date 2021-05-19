@@ -35,6 +35,7 @@ for each user (this adds user-specific todo lists)
 29. created Project and Issue models
     bug: date fields were not updating, so I overrode the save function to save dates manually
 30. installed bootstrap-select
+31. created project.html to create a new project
 
 PAGES
 -----
@@ -98,6 +99,8 @@ project has a
     To Do list which is a set of
         issues
 
+TODO: users have to have a unique username, but if u create a new account with
+an existing username, no error is thrown, yet the account is not created
 TODO: remove side bar and put everythin in top? looks ugly on mobile and blocks elements
 TODO: add grey out to completed items
 TODO: add trash can to delete items and todolists

@@ -75,3 +75,9 @@ pass = sg12433233
 
 # create a super user
 python manage.py createsuperuser
+
+### TECHNOLOGIES USED IN THIS PROJECT
+
+jQuery
+Bootstrap
+sqlite3
