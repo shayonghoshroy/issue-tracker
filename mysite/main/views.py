@@ -7,6 +7,18 @@ import json
 
 # Create your views here.
 
+# view project by id
+def project_index(response, id):
+    if not response.user.is_authenticated:
+        return HttpResponseRedirect("/login/")
+
+    project = Project.objects.get(id=id)
+    if project:
+        return render(response, "main/project-index.html", {"project":project})
+
+    return render(response, "main/home.html", {})
+
+'''
 def index(response, id):
     if not response.user.is_authenticated:
         return HttpResponseRedirect("/login/")
@@ -36,7 +48,7 @@ def index(response, id):
 
     #item = ls.item_set.all().get(id=1)
     #return HttpResponse("<h1>%s</h1><br></br><p>%s</p>" % (ls, item))
-
+'''
 def home(response):
     if not response.user.is_authenticated:
         return HttpResponseRedirect("/login/")
