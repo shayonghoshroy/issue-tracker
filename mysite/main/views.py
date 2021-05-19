@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
-from . models import ToDoList, Item
+from . models import ToDoList, Item, Project, Issue
 from . forms import CreateNewList
 from django.contrib.auth import get_user_model
 
@@ -70,13 +70,17 @@ def project(response):
         return HttpResponseRedirect("/login/")
 
     if response.method == "POST":
+        print(response.POST)
         form = CreateNewList(response.POST)
+
         if form.is_valid():
+            '''
             n = form.cleaned_data["name"]
             d = form.cleaned_data["description"]
             p = Project(name=n, description=d)
             p.save()
             response.user.project.add(p)
+            '''
         return HttpResponseRedirect("/") # TODO: redirect to project view
     else:
         form = CreateNewList()
@@ -84,7 +88,6 @@ def project(response):
     # get all users
     User = get_user_model()
     users = User.objects.all()
-
     return render(response, "main/project.html", {"form":form, "users": users})
 
 def view(response):
