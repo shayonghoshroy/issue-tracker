@@ -14,6 +14,7 @@ def project_index(response, id):
 
     project = Project.objects.get(id=id)
     if project:
+        print(response)
         return render(response, "main/project-index.html", {"project":project})
 
     return render(response, "main/home.html", {})
@@ -100,7 +101,7 @@ def project(response):
 
         return HttpResponseRedirect("/project/%i" %project.id) # TODO: redirect to project view
     else:
-        form = CreateNewProject()
+        form = CreateNewList()
 
     # get all users
     User = get_user_model()
