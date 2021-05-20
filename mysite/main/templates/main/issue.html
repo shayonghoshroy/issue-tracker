@@ -4,8 +4,45 @@
 Issue
 {% endblock %}
 
+
 {% block content %}
     {% if user.is_authenticated %}
+        <h3>Create an Issue for {{project.name}}</h3>
+        <form method="post" action="" class="form-group">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label class="my-1 mr-2" for="type">Type</label>
+                <select name="type" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                    <option selected>Choose...</option>
+                    <option name="task">task</option>
+                    <option name="bug">bug</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="my-1 mr-2" for="priority">Priority</label>
+                <select name="priority" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                    <option selected>Choose...</option>
+                    <option name="minor">minor</option>
+                    <option name="major">major</option>
+                    <option name="blocker">blocker</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="my-1 mr-2" for="assignee">Assigned To</label>
+                <select name="assignee" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                    <option selected>Choose...</option>
+                    {% for member in project.members %}
+                        <option name="{{member.username}}">{{member}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary my-1">Submit</button>
+        </form>
+
     {% else %}
             <p>Login <a href="/login">here.</a></p>
     {% endif %}

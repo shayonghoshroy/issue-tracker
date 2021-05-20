@@ -81,7 +81,8 @@ def create(response):
 
 # create an issue
 def issue(response, id):
-    return render(response, "main/issue.html", {})
+    print(response.POST)
+    return render(response, "main/issue.html", {"project":Project.objects.get(id=id)})
 
 # create a project
 def project(response):

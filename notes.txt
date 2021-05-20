@@ -77,7 +77,6 @@ pass = sg12433233
 python manage.py createsuperuser
 
 ### TECHNOLOGIES USED IN THIS PROJECT
-
 Full Stack Web Development:
     JavaScript
     HTML/CSS
