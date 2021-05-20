@@ -97,9 +97,10 @@ def project(response):
             project.save()
             response.user.project.add(project)
 
-        return HttpResponseRedirect("/") # TODO: redirect to project view
+
+        return HttpResponseRedirect("/project/%i" %project.id) # TODO: redirect to project view
     else:
-        form = CreateNewList()
+        form = CreateNewProject()
 
     # get all users
     User = get_user_model()
