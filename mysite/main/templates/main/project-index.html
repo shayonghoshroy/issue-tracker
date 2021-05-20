@@ -6,5 +6,5 @@
     {% for member in project.members %}
         <p>{{member}}</p>
     {% endfor %}
-    <a href="/issue" class="btn btn-info" role="button">Create Issue</a>
+    <a href="/project/{{project.id}}/issue/" class="btn btn-info" role="button">Create Issue</a>
 {% endblock %}

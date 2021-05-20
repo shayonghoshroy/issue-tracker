@@ -79,6 +79,10 @@ def create(response):
         form = CreateNewList()
     return render(response, "main/create.html", {"form":form})
 
+# create an issue
+def issue(response, id):
+    return render(response, "main/issue.html", {})
+
 # create a project
 def project(response):
     if not response.user.is_authenticated:
@@ -99,7 +103,7 @@ def project(response):
             response.user.project.add(project)
 
 
-        return HttpResponseRedirect("/project/%i" %project.id) # TODO: redirect to project view
+        return HttpResponseRedirect("/project/%i/" %project.id) # TODO: redirect to project view
     else:
         form = CreateNewList()
 
