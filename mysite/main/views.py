@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
-from . models import ToDoList, Item, Project, Issue
-from . forms import CreateNewList
+from . models import ToDoList, Item, Project, Issue, Comment
+from . forms import CreateNewList, CommentForm
 from django.contrib.auth import get_user_model
 import json
 from django.core.exceptions import ValidationError
@@ -27,10 +27,21 @@ def issue_index(response, id, issue_id):
         return HttpResponseRedirect("/login/")
 
     issue = Issue.objects.get(id=issue_id)
+    cf = CommentForm()
     if issue:
-        return render(response, "main/issue-index.html", {"issue":issue})
+        if response.method == 'POST':
+            if response.POST.get("save"):
+                cf = CommentForm(response.POST or None)
+                if cf.is_valid():
+                    content = response.POST.get('content')
+                    comment = Comment.objects.create(issue=issue, author=response.user, content=content)
+                    comment.save()
+                    return HttpResponseRedirect("/project/%i/issue/%i" %(issue.project.id, issue_id))
+
+        return render(response, "main/issue-index.html", {"issue":issue, 'comment_form':cf})
 
     return render(response, "main/home.html", {})
+
 
 '''
 def index(response, id):

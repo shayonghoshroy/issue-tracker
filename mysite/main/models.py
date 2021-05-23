@@ -89,3 +89,10 @@ class Issue(models.Model):
 
     def __str__(self):
         return str(self.date_created)
+
+
+# comment section in each Issue
+class Comment(models.Model):
+    issue = models.ForeignKey(Issue, on_delete=models.CASCADE, related_name="comments")
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    content = models.TextField()

@@ -1,6 +1,16 @@
 {% extends "main/base.html" %}
+{% load crispy_forms_tags %}
 
 {% block content %}
     <h3>{{issue.project.name}}</h3>
     <p>Type: {{issue.type}}</p>
+    <form method="POST">
+        {% csrf_token %}
+        {{comment_form.as_p}}
+        <button type="submit", name="save", value="save", class="btn btn-success">Comment</button>
+    </form>
+    {% for comment in issue.comments.all %}
+        <p>{{comment.author.username}}</p>
+        <p>{{comment.content}}</p>
+    {% endfor %}
 {% endblock %}
