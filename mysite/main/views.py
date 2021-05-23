@@ -20,6 +20,18 @@ def project_index(response, id):
 
     return render(response, "main/home.html", {})
 
+
+# view issue by id
+def issue_index(response, id, issue_id):
+    if not response.user.is_authenticated:
+        return HttpResponseRedirect("/login/")
+
+    issue = Issue.objects.get(id=issue_id)
+    if issue:
+        return render(response, "main/issue-index.html", {"issue":issue})
+
+    return render(response, "main/home.html", {})
+
 '''
 def index(response, id):
     if not response.user.is_authenticated:
