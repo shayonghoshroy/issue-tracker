@@ -6,5 +6,8 @@
     {% for member in project.members %}
         <p>{{member}}</p>
     {% endfor %}
+    {% for issue in project.issue_set.all %}
+        <p>{{issue}}</p>
+    {% endfor %}
     <a href="/project/{{project.id}}/issue/" class="btn btn-info" role="button">Create Issue</a>
 {% endblock %}

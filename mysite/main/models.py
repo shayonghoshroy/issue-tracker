@@ -80,6 +80,7 @@ class Issue(models.Model):
     date_created = models.DateTimeField(editable=False)
     date_updated = models.DateTimeField()
 
+
     def save(self, *args, **kwargs):
         ''' On save, update timestamps '''
         if not self.id:
@@ -95,4 +96,15 @@ class Issue(models.Model):
 class Comment(models.Model):
     issue = models.ForeignKey(Issue, on_delete=models.CASCADE, related_name="comments")
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    content = models.TextField()
+    content = models.TextField
+
+    def __str__(self):
+        return self.content
+
+# add files to Issues
+class File(models.Model):
+    file = models.FileField(upload_to="media/", null=True)
+    file_name = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.file_name

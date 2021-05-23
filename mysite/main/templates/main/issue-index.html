@@ -4,6 +4,12 @@
 {% block content %}
     <h3>{{issue.project.name}}</h3>
     <p>Type: {{issue.type}}</p>
+    <a href="/media/media/confused-woman-meme_ZHvXPvI.png">File 1</a>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ file_form.as_p }}
+        <button type="submit", name="upload", value="upload", class="btn btn-success">Upload File</button>
+    </form>
     <form method="POST">
         {% csrf_token %}
         {{comment_form.as_p}}

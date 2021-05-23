@@ -1,5 +1,5 @@
 from django import forms
-from . models import Comment
+from . models import Comment, File
 
 class CreateNewList(forms.Form):
     name = forms.CharField(label="Name", max_length = 200)
@@ -21,3 +21,10 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ['content']
+
+# upload a file
+class FileForm(forms.ModelForm):
+    class Meta:
+        model = File
+        fields = {'file', 'file_name'}
+        

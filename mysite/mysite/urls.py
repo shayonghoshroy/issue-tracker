@@ -16,6 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from register import views as v
+from django.conf.urls import url
+from django.views.static import serve
+from django.conf import settings
+from django.conf.urls.static import static
 
 # for a given path, link that path to corresponding app's urls.py file
 
@@ -28,3 +32,6 @@ urlpatterns = [
     path('register/', v.register, name="register"),
     path('', include("django.contrib.auth.urls")), # log in/out, change password
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

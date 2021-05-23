@@ -105,6 +105,8 @@ project has a
     To Do list which is a set of
         issues
 
+TODO: send emails when an issue is assigned to a user?
+TODO: notification center
 TODO: users have to have a unique username, but if u create a new account with
 an existing username, no error is thrown, yet the account is not created
 TODO: remove side bar and put everythin in top? looks ugly on mobile and blocks elements
