@@ -32,6 +32,9 @@ django-admin startproject mysite
 
 ### SQL ###
 
+# enter sqlite
+python manage.py dbshell
+
 # enter python shell
 python manage.py shell
 

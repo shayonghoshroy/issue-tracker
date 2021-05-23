@@ -18,6 +18,9 @@ Issue
                     <option name="task">task</option>
                     <option name="bug">bug</option>
                 </select>
+                <div class="text-danger">
+                    {{error1}}
+                </div>
             </div>
 
             <div class="form-group">
@@ -28,6 +31,9 @@ Issue
                     <option name="major">major</option>
                     <option name="blocker">blocker</option>
                 </select>
+                <div class="text-danger">
+                    {{error2}}
+                </div>
             </div>
 
             <div class="form-group">
@@ -38,9 +44,12 @@ Issue
                         <option name="{{member.username}}">{{member}}</option>
                     {% endfor %}
                 </select>
+                <div class="text-danger">
+                    {{error3}}
+                </div>
             </div>
 
-            <button type="submit" class="btn btn-primary my-1">Submit</button>
+            <button type="submit" name="save" value="save" class="btn btn-primary my-1">Submit</button>
         </form>
 
     {% else %}

@@ -75,8 +75,8 @@ class Issue(models.Model):
         ),
         default = "assigned"
     )
-    assigner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="issue", null=True)
-    assignee = models.CharField(max_length=200)
+    assigner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="issue_assigner", null=True)
+    assignee = models.ForeignKey(User, on_delete=models.CASCADE, related_name="issue_assignee", null=True)
     date_created = models.DateTimeField(editable=False)
     date_updated = models.DateTimeField()
 

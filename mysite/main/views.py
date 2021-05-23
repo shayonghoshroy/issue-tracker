@@ -4,6 +4,7 @@ from . models import ToDoList, Item, Project, Issue
 from . forms import CreateNewList
 from django.contrib.auth import get_user_model
 import json
+from django.core.exceptions import ValidationError
 
 # Create your views here.
 
@@ -82,7 +83,34 @@ def create(response):
 # create an issue
 def issue(response, id):
     print(response.POST)
-    return render(response, "main/issue.html", {"project":Project.objects.get(id=id)})
+    my_project = Project.objects.get(id=id)
+    if response.method == "POST":
+        if response.POST.get("save"):
+            my_type = response.POST.get("type")
+            my_priority = response.POST.get("priority")
+            my_assignee = response.POST.get("assignee")
+
+            # validate input
+            errors = ["", "", ""]
+            default = "Choose..."
+            if my_type == default:
+                errors[0] = "Please choose a type."
+            if my_priority == default:
+                errors[1] = "Please choose a priority."
+            if my_assignee == default:
+                errors[2] = "Please choose an assignee."
+            for error in errors:
+                if error:
+                    return render(response, "main/issue.html", {"project":my_project,
+                    "error1":errors[0], "error2":errors[1], "error3":errors[2]})
+
+            my_project.issue_set.create(project=my_project, type=my_type, priority=my_priority,
+                status="assigned", assigner=response.user, assignee=get_user_model().objects.get(username=my_assignee))
+            my_project.save()
+        return HttpResponseRedirect("/project/%i/" %my_project.id)
+
+
+    return render(response, "main/issue.html", {"project":my_project})
 
 # create a project
 def project(response):
@@ -104,7 +132,7 @@ def project(response):
             response.user.project.add(project)
 
 
-        return HttpResponseRedirect("/project/%i/" %project.id) # TODO: redirect to project view
+        return HttpResponseRedirect("/project/%i/" %project.id)
     else:
         form = CreateNewList()
 
