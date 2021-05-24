@@ -79,7 +79,7 @@ class Issue(models.Model):
     assignee = models.ForeignKey(User, on_delete=models.CASCADE, related_name="issue_assignee", null=True)
     date_created = models.DateTimeField(editable=False)
     date_updated = models.DateTimeField()
-
+    files = JSONField(default=list)
 
     def save(self, *args, **kwargs):
         ''' On save, update timestamps '''
@@ -103,8 +103,9 @@ class Comment(models.Model):
 
 # add files to Issues
 class File(models.Model):
+    file_name = models.CharField(max_length=200, unique=True)
     file = models.FileField(upload_to="media/", null=True)
-    file_name = models.CharField(max_length=200)
+
 
     def __str__(self):
         return self.file_name

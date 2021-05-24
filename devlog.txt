@@ -42,6 +42,7 @@ and a multiple selector dropdown that allows people to search and add all projec
 34. added input validation to issue.html
 35. created a issue index to view issues
 36. added a comment system to issue index
+37. adding file upload system to issue index
 
 PAGES
 -----

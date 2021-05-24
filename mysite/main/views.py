@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
-from . models import ToDoList, Item, Project, Issue, Comment
+from . models import ToDoList, Item, Project, Issue, Comment, File
 from . forms import CreateNewList, CommentForm, FileForm
 from django.contrib.auth import get_user_model
 import json
 from django.core.exceptions import ValidationError
+import os
 
 # Create your views here.
 
@@ -26,6 +27,16 @@ def issue_index(response, id, issue_id):
     if not response.user.is_authenticated:
         return HttpResponseRedirect("/login/")
 
+    for root, dirs, files in os.walk("."):
+        for filename in files:
+            #print(root, dirs, filename)
+            pass
+
+    for file in File.objects.all():
+        pass
+        #print(file.file_name, file.file)
+
+
     issue = Issue.objects.get(id=issue_id)
     cf = CommentForm()
     f = FileForm()
@@ -41,11 +52,30 @@ def issue_index(response, id, issue_id):
             if response.POST.get("upload"):
                 f = FileForm(response.POST, response.FILES)
                 if f.is_valid():
-                    f.save()
+                    '''
+                    _mutable = f.data._mutable
+                    f.data._mutable = True
+                    f.data['file_name'] = str(issue_id) + "/" + f.data['file_name']
+                    f.data._mutable = _mutable
+                    print(f.data['file_name'])
+                    '''
+
+                    file = f.save()
+                    issue.files.append(f.data['file_name'])
+                    issue.save()
+                    print(issue.files)
+                    #print(file)
+
+                    #issue.save()
+
+
+
+
+                    #print(f.data['file_name'])
                     print(response.POST)
                     return HttpResponseRedirect("/project/%i/issue/%i" %(issue.project.id, issue_id))
 
-        return render(response, "main/issue-index.html", {"issue":issue, 'comment_form':cf, 'file_form':f})
+        return render(response, "main/issue-index.html", {"issue":issue, 'comment_form':cf, 'file_form':f, 'all_files':File.objects.all()})
 
     return render(response, "main/home.html", {})
 

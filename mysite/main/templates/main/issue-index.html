@@ -1,10 +1,15 @@
 {% extends "main/base.html" %}
 {% load crispy_forms_tags %}
 
+
 {% block content %}
     <h3>{{issue.project.name}}</h3>
     <p>Type: {{issue.type}}</p>
-    <a href="/media/media/confused-woman-meme_ZHvXPvI.png">File 1</a>
+    {% for file in all_files %}
+        {% if file.file_name in issue.files %}
+            <a href="{{file.file.url}}" download>{{file.file_name}}<br></a>
+        {% endif %}
+    {% endfor %}
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ file_form.as_p }}
