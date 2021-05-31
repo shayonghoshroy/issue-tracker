@@ -44,6 +44,8 @@ and a multiple selector dropdown that allows people to search and add all projec
 36. added a comment system to issue index
 37. adding file upload system to issue index
 38. added file download system to issue index
+39. added summary and description fields to issue
+
 
 PAGES
 -----
@@ -107,7 +109,7 @@ project has a
     To Do list which is a set of
         issues
 
-
+TODO: show summary/description on issue index, update issue index to be in-line editable
 TODO: delete projects/issues
 TODO: send emails when an issue is assigned to a user?
 TODO: notification center

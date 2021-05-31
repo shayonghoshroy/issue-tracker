@@ -18,7 +18,20 @@ def project_index(response, id):
 
     project = Project.objects.get(id=id)
     if project:
-        print(response)
+        # if changes detected, update project
+        if response.method == 'POST':
+            if response.POST.get("save-changes"):
+                my_name = response.POST.get("name")
+                my_description = response.POST.get("description")
+                my_members_list = response.POST.getlist("members")
+                if my_name:
+                    project.name = my_name
+                if my_description:
+                    project.description = my_description
+                if my_members_list:
+                    project.members = my_members_list
+                project.save()
+
         # get all users
         User = get_user_model()
         users = User.objects.all()
