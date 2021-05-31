@@ -151,6 +151,8 @@ def issue(response, id):
     my_project = Project.objects.get(id=id)
     if response.method == "POST":
         if response.POST.get("save"):
+            my_summary = response.POST.get("summary")
+            my_description = response.POST.get("description")
             my_type = response.POST.get("type")
             my_priority = response.POST.get("priority")
             my_assignee = response.POST.get("assignee")
@@ -169,7 +171,7 @@ def issue(response, id):
                     return render(response, "main/issue.html", {"project":my_project,
                     "error1":errors[0], "error2":errors[1], "error3":errors[2]})
 
-            my_project.issue_set.create(project=my_project, type=my_type, priority=my_priority,
+            my_project.issue_set.create(project=my_project, summary=my_summary, description=my_description, type=my_type, priority=my_priority,
                 status="assigned", assigner=response.user, assignee=get_user_model().objects.get(username=my_assignee))
             my_project.save()
         return HttpResponseRedirect("/project/%i/" %my_project.id)
