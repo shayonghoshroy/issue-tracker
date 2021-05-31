@@ -49,6 +49,8 @@ class Project(models.Model):
 
 class Issue(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    summary = models.CharField(max_length=200)
+    description = models.CharField(max_length=1000)
     type = models.CharField(
         max_length = 4,
         choices = (
