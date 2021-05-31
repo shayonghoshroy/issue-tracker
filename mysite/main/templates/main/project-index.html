@@ -1,13 +1,68 @@
 {% extends "main/base.html" %}
 
+
+
 {% block content %}
-    <h3>{{project.name}}</h3>
-    <p>{{project.description}}</p>
-    {% for member in project.members %}
-        <p>{{member}}</p>
-    {% endfor %}
+
+    <style type="text/css">
+        .form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+                    color: black;
+                    opacity: 1; /* Firefox */
+        }
+        .form-control:-ms-input-placeholder { /* Internet Explorer 10-11 */
+            color: red;
+        }
+
+        .form-control::-ms-input-placeholder { /* Microsoft Edge */
+            color: red;
+        }
+        .form-control {
+            border: 0;
+            font-size: 32px;
+        }
+
+        .form-control-d::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+                    color: black;
+                    opacity: 1; /* Firefox */
+        }
+        .form-control-d:-ms-input-placeholder { /* Internet Explorer 10-11 */
+            color: red;
+        }
+
+        .form-control-d::-ms-input-placeholder { /* Microsoft Edge */
+            color: red;
+        }
+        .form-control-d {
+            border: 0;
+            font-size: 16px;
+            color: black;
+            opacity: 1; /* Firefox */
+        }
+    </style>
+
+    <form method="post" action="" class="form-group">
+        {% csrf_token %}
+        <div class="form-group">
+            <input type="text" name="name" class="form-control" required id="exampleProjectName1" aria-describedby="nameHelp" placeholder="{{project.name}}">
+        </div>
+        <div class="form-group">
+            <input type="text" name="description" class="form-control-d" id="exampleDescriptionName1" aria-describedby="descriptionHelp" placeholder="{{project.description}}">
+        </div>
+        <select class="selectpicker" name="members" id="members" multiple title="Select members..." multiple data-live-search="true">
+            {% for user in users %}
+                {% if user.username in project.members %}
+                    <option value="{{user.username}}" selected>{{user}}</option>
+                {% else %}
+                    <option value="{{user.username}}">{{user}}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+    </form>
     {% for issue in project.issue_set.all %}
-        <p>{{issue}}</p>
+        <a href="/project/{{project.id}}/issue/{{issue.id}}" class="btn btn-warning" role="button">{{issue.id}}</a>
+        <br>
     {% endfor %}
+    <br>
     <a href="/project/{{project.id}}/issue/" class="btn btn-info" role="button">Create Issue</a>
+
 {% endblock %}

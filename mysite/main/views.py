@@ -14,10 +14,15 @@ def project_index(response, id):
     if not response.user.is_authenticated:
         return HttpResponseRedirect("/login/")
 
+    print(response.POST)
+
     project = Project.objects.get(id=id)
     if project:
         print(response)
-        return render(response, "main/project-index.html", {"project":project})
+        # get all users
+        User = get_user_model()
+        users = User.objects.all()
+        return render(response, "main/project-index.html", {"project":project, "users": users})
 
     return render(response, "main/home.html", {})
 

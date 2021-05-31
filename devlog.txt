@@ -43,6 +43,7 @@ and a multiple selector dropdown that allows people to search and add all projec
 35. created a issue index to view issues
 36. added a comment system to issue index
 37. adding file upload system to issue index
+38. added file download system to issue index
 
 PAGES
 -----
@@ -106,6 +107,8 @@ project has a
     To Do list which is a set of
         issues
 
+
+TODO: delete projects/issues
 TODO: send emails when an issue is assigned to a user?
 TODO: notification center
 TODO: users have to have a unique username, but if u create a new account with
