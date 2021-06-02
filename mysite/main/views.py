@@ -198,9 +198,10 @@ def issue(response, id):
             my_priority = response.POST.get("priority")
             my_assignee = response.POST.get("assignee")
 
+            print(response.POST)
             # validate input
             errors = ["", "", ""]
-            default = "Choose..."
+            default = "none"
             if my_type == default:
                 errors[0] = "Please choose a type."
             if my_priority == default:
