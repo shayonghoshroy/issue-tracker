@@ -15,6 +15,7 @@ def project_index(response, id):
         return HttpResponseRedirect("/login/")
 
     print(response.POST)
+    print(response)
 
     project = Project.objects.get(id=id)
     if project:
@@ -31,6 +32,11 @@ def project_index(response, id):
                 if my_members_list:
                     project.members = my_members_list
                 project.save()
+
+            # delete project
+            if response.POST.get("delete"):
+                project.delete()
+                return HttpResponseRedirect("/")
 
         # get all users
         User = get_user_model()

@@ -45,6 +45,7 @@ and a multiple selector dropdown that allows people to search and add all projec
 37. adding file upload system to issue index
 38. added file download system to issue index
 39. added summary and description fields to issue
+40. added inline editing for project index
 
 
 PAGES
