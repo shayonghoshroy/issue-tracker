@@ -88,16 +88,13 @@ def issue_index(response, id, issue_id):
                     issue.files.append(f.data['file_name'])
                     issue.save()
                     print(issue.files)
-                    #print(file)
-
-                    #issue.save()
-
-
-
-
-                    #print(f.data['file_name'])
                     print(response.POST)
                     return HttpResponseRedirect("/project/%i/issue/%i" %(issue.project.id, issue_id))
+
+            # delete issue
+            if response.POST.get("delete"):
+                issue.delete()
+                return HttpResponseRedirect("/project/%i/" %issue.project.id)
 
         return render(response, "main/issue-index.html", {"issue":issue, 'comment_form':cf, 'file_form':f, 'all_files':File.objects.all()})
 
