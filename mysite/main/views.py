@@ -66,30 +66,49 @@ def issue_index(response, id, issue_id):
     f = FileForm()
     if issue:
         if response.method == 'POST':
-            if response.POST.get("save"):
+            # comments
+            if response.POST.get("comment"):
                 cf = CommentForm(response.POST or None)
                 if cf.is_valid():
                     content = response.POST.get('content')
                     comment = Comment.objects.create(issue=issue, author=response.user, content=content)
                     comment.save()
                     return HttpResponseRedirect("/project/%i/issue/%i" %(issue.project.id, issue_id))
+            # file uploads
             if response.POST.get("upload"):
                 f = FileForm(response.POST, response.FILES)
                 if f.is_valid():
-                    '''
-                    _mutable = f.data._mutable
-                    f.data._mutable = True
-                    f.data['file_name'] = str(issue_id) + "/" + f.data['file_name']
-                    f.data._mutable = _mutable
-                    print(f.data['file_name'])
-                    '''
-
                     file = f.save()
                     issue.files.append(f.data['file_name'])
                     issue.save()
                     print(issue.files)
                     print(response.POST)
                     return HttpResponseRedirect("/project/%i/issue/%i" %(issue.project.id, issue_id))
+
+            # changes to issue's contents
+            if response.POST.get("save-changes"):
+                print(response.POST)
+                my_summary = response.POST.get("summary")
+                my_description = response.POST.get("description")
+                my_type = response.POST.get("type")
+                my_priority = response.POST.get("priority")
+                my_assignee = response.POST.get("assignee")
+                my_status = response.POST.get("status")
+
+                if my_summary:
+                    issue.summary = my_summary
+                if my_description:
+                    issue.description = my_description
+                if my_type:
+                    issue.type = my_type
+                if my_priority:
+                    issue.priority = my_priority
+                if my_assignee:
+                    issue.assignee = get_user_model().objects.get(username=my_assignee)
+                if my_status:
+                    issue.status = my_status
+
+                issue.save()
 
             # delete issue
             if response.POST.get("delete"):

@@ -108,7 +108,7 @@
     <form method="POST">
         {% csrf_token %}
         {{comment_form.as_p}}
-        <button type="submit", name="save", value="save", class="btn btn-success">Comment</button>
+        <button type="submit", name="comment", value="save", class="btn btn-success">Comment</button>
     </form>
     {% for comment in issue.comments.all %}
         <p>{{comment.author.username}}</p>
