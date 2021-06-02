@@ -5,38 +5,19 @@
 {% block content %}
 
     <style type="text/css">
-        .form-control-n::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-                    color: black;
-                    opacity: 1; /* Firefox */
-        }
-        .form-control-n:-ms-input-placeholder { /* Internet Explorer 10-11 */
-            color: black;
-        }
-
-        .form-control-n::-ms-input-placeholder { /* Microsoft Edge */
-            color: black;
-        }
-        .form-control-n {
-            border: 0;
-            font-size: 32px;
-            color: black;
-            opacity: 1; /* Firefox */
-        }
-
         .form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-                    color: black;
-                    opacity: 1; /* Firefox */
+                color: black;
+                opacity: 1; /* Firefox */
         }
         .form-control:-ms-input-placeholder { /* Internet Explorer 10-11 */
-            color: red;
+            color: black;
         }
 
         .form-control::-ms-input-placeholder { /* Microsoft Edge */
-            color: red;
+            color: black;
         }
         .form-control {
             border: 0;
-            font-size: 16px;
             color: black;
             opacity: 1; /* Firefox */
         }
@@ -45,10 +26,10 @@
     <form method="post" action="" class="form-group">
         {% csrf_token %}
         <div class="form-group">
-            <input type="text" name="name" novalidate class="form-control-n" id="exampleProjectName1" aria-describedby="nameHelp" placeholder="{{project.name}}">
+            <input type="text" name="name" style="font-size:2vw" novalidate class="form-control" id="exampleProjectName1" aria-describedby="nameHelp" placeholder="{{project.name}}">
         </div>
         <div class="form-group">
-            <input type="text" name="description" novalidate class="form-control" id="exampleDescriptionName1" aria-describedby="descriptionHelp" placeholder="{{project.description}}">
+            <input type="text" name="description" style="font-size:1vw" novalidate class="form-control" id="exampleDescriptionName1" aria-describedby="descriptionHelp" placeholder="{{project.description}}">
         </div>
         <select class="selectpicker" name="members" id="members" multiple title="Select members..." multiple data-live-search="true">
             {% for user in users %}

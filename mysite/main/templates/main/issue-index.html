@@ -3,8 +3,86 @@
 
 
 {% block content %}
-    <h3>{{issue.project.name}}</h3>
-    <p>Type: {{issue.type}}</p>
+    <style type="text/css">
+        .form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+                color: black;
+                opacity: 1; /* Firefox */
+        }
+        .form-control:-ms-input-placeholder { /* Internet Explorer 10-11 */
+            color: black;
+        }
+
+        .form-control::-ms-input-placeholder { /* Microsoft Edge */
+            color: black;
+        }
+        .form-control {
+            border: 0;
+            color: black;
+            opacity: 1; /* Firefox */
+        }
+    </style>
+
+    <!-- display issue contents with inline editing capability -->
+    <form method="post" action="" class="form-group">
+        {% csrf_token %}
+        <div class="form-group">
+            <input type="text" name="name" style="font-size:2vw" novalidate class="form-control" id="exampleProjectName1" aria-describedby="nameHelp" placeholder="{{issue.project.name}}">
+            <input type="text" name="summary" style="font-size:1vw" novalidate class="form-control" id="exampleIssueSummary1" aria-describedby="summaryHelp" placeholder="{{issue.summary}}">
+            <input type="text" name="description" style="font-size:1vw" novalidate class="form-control" id="exampleIssueDescription1" aria-describedby="descriptionHelp" placeholder="{{issue.description}}">
+
+            <select name="type" class="selectpicker">
+                {% for type in types  %}
+                    {% if type == issue.type %}
+                        <option name="{{type}}" selected>{{type}}</option>
+                    {% else %}
+                        <option name="{{type}}">{{type}}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+            <br>
+
+            <select name="priority" class="selectpicker">
+                {% if issue.priority == "minor" %}
+                    <option name="minor" selected>minor</option>
+                    <option name="major">major</option>
+                    <option name="blocker">blocker</option>
+                {% elif issue.priority == "major" %}
+                    <option name="minor">minor</option>
+                    <option name="major" selected>major</option>
+                    <option name="blocker">blocker</option>
+                {% else %}
+                    <option name="minor">minor</option>
+                    <option name="major">major</option>
+                    <option name="blocker" selected>blocker</option>
+                {% endif %}
+            </select>
+            <br>
+
+            <select class="selectpicker" name="assignee" data-live-search="true">
+                {% for member in issue.project.members %}
+                    {% if member == issue.assignee.username %}
+                        <option name="{{member.username}}" selected>{{member}}</option>
+                    {% else %}
+                        <option name="{{member.username}}">{{member}}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+            <br>
+
+            <select class="selectpicker" name="status">
+                {% for status in statuses %}
+                    {% if status == issue.status %}
+                        <option name="{{status}}" selected>{{status}}</option>
+                    {% else %}
+                        <option name="{{status}}">{{status}}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+            <br>
+
+            <button type="submit", name="save-changes", value="save-changes", class="btn btn-secondary">Save Changes</button>
+    </form>
+
     {% for file in all_files %}
         {% if file.file_name in issue.files %}
             <a href="{{file.file.url}}" download>{{file.file_name}}<br></a>

@@ -110,6 +110,8 @@ project has a
     To Do list which is a set of
         issues
 
+TODO: make all dropdowns bootstrap-select
+TODO: make all elements have dynamic sizes (vw font) so that website scales to different resolutions
 TODO: show summary/description on issue index, update issue index to be in-line editable
 TODO: delete projects/issues
 TODO: send emails when an issue is assigned to a user?

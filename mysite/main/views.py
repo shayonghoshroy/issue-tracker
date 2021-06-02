@@ -96,7 +96,13 @@ def issue_index(response, id, issue_id):
                 issue.delete()
                 return HttpResponseRedirect("/project/%i/" %issue.project.id)
 
-        return render(response, "main/issue-index.html", {"issue":issue, 'comment_form':cf, 'file_form':f, 'all_files':File.objects.all()})
+        # define and pass all possible fields
+        types = ["task", "bug"]
+        priorities = ["minor", "major", "blocker"]
+        statuses = ["assigned", "in-progress", "resolved"]
+
+        return render(response, "main/issue-index.html", {"issue":issue,
+            'comment_form':cf, 'file_form':f, 'all_files':File.objects.all(), "types":types, "priorities":priorities, "statuses":statuses})
 
     return render(response, "main/home.html", {})
 
