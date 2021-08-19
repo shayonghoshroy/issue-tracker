@@ -45,6 +45,19 @@ def project_index(response, id):
 
     return render(response, "main/home.html", {})
 
+# list all projects belonging to the user
+def project_list(response):
+    if not response.user.is_authenticated:
+        return HttpResponseRedirect("/login/")
+
+    projects = []
+    for p in Project.objects.all():
+        members = p.members
+        user = response.user.username
+        if user in members:
+            projects.append(p)
+    return render(response, "main/project-list.html", {"projects":projects})
+
 
 # view issue by id
 def issue_index(response, id, issue_id):

@@ -12,4 +12,5 @@ path("project/", views.project, name="project"),
 path("project/<int:id>/", views.project_index, name="project_index"),
 path("project/<int:id>/issue/", views.issue, name="issue"),
 path("project/<int:id>/issue/<int:issue_id>/", views.issue_index, name="issue_index"),
+path("project/list/", views.project_list, name="project_list")
 ]
