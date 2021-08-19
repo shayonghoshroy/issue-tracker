@@ -1,7 +1,7 @@
 ### RUN ###
 
 # activate virtual env
-source issue-tracker-env/activate
+source issue-tracker-env/bin/activate
 
 # start server (from mysite dir)
 python manage.py runserver

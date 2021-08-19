@@ -20,6 +20,7 @@
             color: black;
             opacity: 1; /* Firefox */
         }
+
     </style>
 
     <!-- display issue contents with inline editing capability -->
@@ -110,8 +111,10 @@
         {{comment_form.as_p}}
         <button type="submit", name="comment", value="save", class="btn btn-success">Comment</button>
     </form>
+
     {% for comment in issue.comments.all %}
         <p>{{comment.author.username}}</p>
         <p>{{comment.content}}</p>
     {% endfor %}
+
 {% endblock %}

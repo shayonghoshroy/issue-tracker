@@ -48,6 +48,12 @@ and a multiple selector dropdown that allows people to search and add all projec
 40. added inline editing for project and issue index
 41. added delete button for project and issue index
 
+Tabs
+- create a project /project/
+- a list of my projects
+- maybe a list of my issues
+- search bar at the top??
+
 
 PAGES
 -----
@@ -111,6 +117,8 @@ project has a
     To Do list which is a set of
         issues
 
+TODO: add option to edit/delete comments
+TODO: add option to delete files
 TODO: make all dropdowns bootstrap-select
 TODO: make all elements have dynamic sizes (vw font) so that website scales to different resolutions
 TODO: send emails when an issue is assigned to a user?
