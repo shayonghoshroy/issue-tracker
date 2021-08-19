@@ -47,12 +47,14 @@ and a multiple selector dropdown that allows people to search and add all projec
 39. added summary and description fields to issue
 40. added inline editing for project and issue index
 41. added delete button for project and issue index
+42. Created a project list page
+43. Created a issue list page
 
-Tabs
-- create a project /project/
-- a list of my projects
-- maybe a list of my issues
-- search bar at the top??
+
+BIG THINGS TO ADD BEFORE INTERVIEW:
+1. CSS that shit
+2. Roles (admin vs developer vs scrum master.....etc....)
+3. Search bar 
 
 
 PAGES
