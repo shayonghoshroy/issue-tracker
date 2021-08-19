@@ -11,8 +11,7 @@ import os
 
 # view project by id
 def project_index(response, id):
-    if not response.user.is_authenticated:
-        return HttpResponseRedirect("/login/")
+    authenticate(response)
 
     print(response.POST)
     print(response)
@@ -47,8 +46,7 @@ def project_index(response, id):
 
 # list all projects belonging to the user
 def project_list(response):
-    if not response.user.is_authenticated:
-        return HttpResponseRedirect("/login/")
+    authenticate(response)
 
     projects = []
     for p in Project.objects.all():
@@ -58,11 +56,25 @@ def project_list(response):
             projects.append(p)
     return render(response, "main/project-list.html", {"projects":projects})
 
+# list all issues belonging to the user
+def issue_list(response):
+    authenticate(response)
+
+    issues = []
+    for i in Issue.objects.all():
+        members = []
+        members.append(i.assignee.username)
+        members.append(i.assigner.username)
+        user = response.user.username
+        if user in members:
+            issues.append(i)
+    return render(response, "main/issue-list.html", {"issues":issues})
+
+
 
 # view issue by id
 def issue_index(response, id, issue_id):
-    if not response.user.is_authenticated:
-        return HttpResponseRedirect("/login/")
+    authenticate(response)
 
     for root, dirs, files in os.walk("."):
         for filename in files:
@@ -171,15 +183,13 @@ def index(response, id):
     #return HttpResponse("<h1>%s</h1><br></br><p>%s</p>" % (ls, item))
 '''
 def home(response):
-    if not response.user.is_authenticated:
-        return HttpResponseRedirect("/login/")
+    authenticate(response)
 
     return render(response, "main/home.html", {})
 
 # user creates todo list
 def create(response):
-    if not response.user.is_authenticated:
-        return HttpResponseRedirect("/login/")
+    authenticate(response)
 
     if response.method == "POST":
         # response.POST is a dict of input attributes
@@ -201,6 +211,7 @@ def create(response):
 
 # create an issue
 def issue(response, id):
+    authenticate(response)
     print(response.POST)
     my_project = Project.objects.get(id=id)
     if response.method == "POST":
@@ -236,8 +247,7 @@ def issue(response, id):
 
 # create a project
 def project(response):
-    if not response.user.is_authenticated:
-        return HttpResponseRedirect("/login/")
+    authenticate(response)
 
     if response.method == "POST":
         if response.POST.get("save"):
@@ -263,8 +273,12 @@ def project(response):
     users = User.objects.all()
     return render(response, "main/project.html", {"form":form, "users": users})
 
-
+# list all todo lists
 def view(response):
+    authenticate(response)
+    return render(response, "main/view.html", {})
+
+# if user is not logged in, redirect to login page
+def authenticate(response):
     if not response.user.is_authenticated:
         return HttpResponseRedirect("/login/")
-    return render(response, "main/view.html", {})

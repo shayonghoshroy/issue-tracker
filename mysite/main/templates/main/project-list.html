@@ -5,6 +5,7 @@ My Projects
 {% endblock %}
 
 {% block content %}
+    <h3>My Projects</h3>
     {% for p in projects %}
         <p><a href="/project/{{p.id}}">{{p.name}}</p>
     {% endfor %}

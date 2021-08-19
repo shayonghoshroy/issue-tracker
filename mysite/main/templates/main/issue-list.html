@@ -1,0 +1,12 @@
+{% extends "main/base.html" %}
+
+{% block title %}
+My Issues
+{% endblock %}
+
+{% block content %}
+    <h3>My Issues</h3>
+    {% for i in issues %}
+        <p><a href="/project/{{i.project.id}}/issue/{{i.id}}">{{i}}</p>
+    {% endfor %}
+{% endblock %}
