@@ -6,7 +6,30 @@ My Projects
 
 {% block content %}
     <h3>My Projects</h3>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for p in projects %}
+                <tr style="transform: rotate(0);">
+                <th style="font-weight:normal" scope="row"><a href="/project/{{p.id}}" class="stretched-link"></a>{{p.name}}</th>
+                    <td>{{p.description}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+
+<!--
     {% for p in projects %}
         <p><a href="/project/{{p.id}}">{{p.name}}</p>
     {% endfor %}
+-->
+
 {% endblock %}

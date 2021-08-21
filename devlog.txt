@@ -54,6 +54,7 @@ and a multiple selector dropdown that allows people to search and add all projec
 
 BIG THINGS TO ADD BEFORE INTERVIEW:
 1. CSS that shit
+- first, we CSS the easy lists
 2. Roles (admin vs developer vs scrum master.....etc....)
  - manager, developer
 3. Search bar
