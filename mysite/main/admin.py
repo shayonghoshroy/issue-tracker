@@ -1,5 +1,5 @@
 from django.contrib import admin
-from . models import ToDoList, Item, Project, Issue, Comment, File
+from . models import ToDoList, Item, Project, Issue, Comment, File, UserProfile
 
 # Register your models here.
 
@@ -9,3 +9,4 @@ admin.site.register(Project)
 admin.site.register(Issue)
 admin.site.register(Comment)
 admin.site.register(File)
+admin.site.register(UserProfile)

@@ -29,6 +29,15 @@ class Item(models.Model):
     def __str__(self):
         return self.text
 
+# user profile that describes their role
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, related_name="profile", on_delete=models.CASCADE)
+    # manager, developer
+    role = models.CharField(max_length=9)
+
+    #toString
+    def __str__(self):
+        return self.role
 
 class Project(models.Model):
     name = models.CharField(max_length=200)

@@ -14,7 +14,7 @@ python manage.py runserver 0.0.0.0:8000
 
 ### UPDATE ###
 
-# run after changing models.py
+# run after changing models.py (make sure you're in the right virtual environment)
 python manage.py makemigrations <app-name>  # stage changes
 python manage.py migrate  # apply changes
 

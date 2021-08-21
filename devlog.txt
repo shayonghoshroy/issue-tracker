@@ -49,12 +49,14 @@ and a multiple selector dropdown that allows people to search and add all projec
 41. added delete button for project and issue index
 42. Created a project list page
 43. Created a issue list page
+44. Created a user profile model with name and role attributes
 
 
 BIG THINGS TO ADD BEFORE INTERVIEW:
 1. CSS that shit
 2. Roles (admin vs developer vs scrum master.....etc....)
-3. Search bar 
+ - manager, developer
+3. Search bar
 
 
 PAGES
