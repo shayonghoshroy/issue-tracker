@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'main.apps.MainConfig',
     'register.apps.RegisterConfig',
+    'bootstrap_modal_forms',
 ]
 
 MIDDLEWARE = [

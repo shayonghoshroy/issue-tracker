@@ -26,4 +26,4 @@ class CommentForm(forms.ModelForm):
 class FileForm(forms.ModelForm):
     class Meta:
         model = File
-        fields = {'file', 'file_name'}
+        fields = {'file_name', 'file'}
