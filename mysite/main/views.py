@@ -40,7 +40,21 @@ def project_index(response, id):
         # get all users
         User = get_user_model()
         users = User.objects.all()
-        return render(response, "main/project-index.html", {"project":project, "users": users})
+
+        # get all issues by status
+        assigned = []
+        in_progress = []
+        resolved = []
+
+        for i in project.issue_set.all():
+            if i.status == "assigned":
+                assigned.append(i)
+            elif i.status == "in-progress":
+                in_progress.append(i)
+            else:
+                resolved.append(i)
+
+        return render(response, "main/project-index.html", {"project":project, "users": users, "assigned":assigned, "in_progress":in_progress, "resolved":resolved})
 
     return render(response, "main/home.html", {})
 
