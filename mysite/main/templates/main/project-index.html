@@ -26,11 +26,13 @@
     <form method="post" action="" class="form-group">
         {% csrf_token %}
         <div class="form-group">
-            <input type="text" name="name" style="font-size:2vw" novalidate class="form-control" id="exampleProjectName1" aria-describedby="nameHelp" placeholder="{{project.name}}">
+            <input type="text" name="name" style="font-size:4vw" novalidate class="form-control" id="exampleProjectName1" aria-describedby="nameHelp" placeholder="{{project.name}}">
         </div>
+        <hr class="mt-0 mb-4">
         <div class="form-group">
             <input type="text" name="description" style="font-size:1vw" novalidate class="form-control" id="exampleDescriptionName1" aria-describedby="descriptionHelp" placeholder="{{project.description}}">
         </div>
+
         <select class="selectpicker" name="members" id="members" multiple title="Select members..." multiple data-live-search="true">
             {% for user in users %}
                 {% if user.username in project.members %}
@@ -53,12 +55,34 @@
 
     </form>
 
-    {% for issue in project.issue_set.all %}
-        <a href="/project/{{project.id}}/issue/{{issue.id}}" class="btn btn-warning" role="button">{{issue.id}}</a>
-        <br>
-    {% endfor %}
-    <br>
-    <a href="/project/{{project.id}}/issue/" class="btn btn-info" role="button">Create Issue</a>
+    {% if project.issue_set.all %}
+        <h4 class="display-4">Issues</h4>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Summary</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Priority</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in project.issue_set.all %}
+                    {% if i.priority == "blocker" %}
+                        <tr class="table-danger" style="transform: rotate(0);">
+                    {% elif i.priority == "major" %}
+                        <tr class="table-warning" style="transform: rotate(0);">
+                    {% else %}
+                        <tr class="table-info" style="transform: rotate(0);">
+                    {% endif %}
+                    <th style="font-weight:normal" scope="row"><a href="/project/{{i.project.id}}/issue/{{i.id}}" class="stretched-link"></a>{{i.summary}}</th>
+                        <td>{{i.type}}</td>
+                        <td>{{i.priority}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+    <a href="/project/{{project.id}}/issue/" class="btn btn-warning btn-lg" role="button">Create New Issue</a>
 
 
 

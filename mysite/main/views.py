@@ -60,15 +60,24 @@ def project_list(response):
 def issue_list(response):
     authenticate(response)
 
-    issues = []
+    assigned = []
+    in_progress = []
+    resolved = []
+
     for i in Issue.objects.all():
         members = []
         members.append(i.assignee.username)
         members.append(i.assigner.username)
         user = response.user.username
         if user in members:
-            issues.append(i)
-    return render(response, "main/issue-list.html", {"issues":issues})
+            if i.status == "assigned":
+                assigned.append(i)
+            elif i.status == "in-progress":
+                in_progress.append(i)
+            else:
+                resolved.append(i)
+
+    return render(response, "main/issue-list.html", {"assigned":assigned, "in_progress":in_progress, "resolved":resolved})
 
 
 
