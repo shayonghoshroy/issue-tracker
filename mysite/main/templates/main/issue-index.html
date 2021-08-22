@@ -20,7 +20,24 @@
             color: black;
             opacity: 1; /* Firefox */
         }
+    </style>
 
+    <style>
+        .container textarea {
+        	width: 100%;
+        	border: none;
+        	background: #E8E8E8;
+        	padding: 5px 10px;
+        	height: 50%;
+        	border-radius: 5px 5px 0px 0px;
+        	border-bottom: 2px solid #016BA8;
+        	transition: all 0.5s;
+        	margin-bottom: 10px;
+            float: right;
+        }
+        .container {
+            float: left;
+        }
     </style>
 
     <!-- display issue contents with inline editing capability -->
@@ -106,15 +123,24 @@
         {{ file_form.as_p }}
         <button type="submit", name="upload", value="upload", class="btn btn-success">Upload File</button>
     </form>
-    <form method="POST">
-        {% csrf_token %}
-        {{comment_form.as_p}}
-        <button type="submit", name="comment", value="save", class="btn btn-success">Comment</button>
-    </form>
 
-    {% for comment in issue.comments.all %}
-        <p>{{comment.author.username}}</p>
-        <p>{{comment.content}}</p>
-    {% endfor %}
+    <!-- post a comment button -->
+    <div class="container">
+        <form method="POST">
+            {% csrf_token %}
+            {{comment_form.as_p}}
+            <button type="submit", name="comment", value="save", class="btn btn-primary">Comment</button>
+        </form>
+        <br>
+        <hr class="mt-0 mb-4">
+        <div>
+            <!-- dispay comments -->
+            {% for comment in issue.comments.all %}
+              <h5>{{comment.author.username}}</h5>
+              <p>{{comment.content}}</p>
+              <hr class="mt-0 mb-4">
+            {% endfor %}
+        </div>
+    </div>
 
 {% endblock %}

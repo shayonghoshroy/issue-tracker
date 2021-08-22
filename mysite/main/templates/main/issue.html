@@ -4,62 +4,54 @@
 Issue
 {% endblock %}
 
-
 {% block content %}
-    {% if user.is_authenticated %}
-        <h3>Create an Issue for {{project.name}}</h3>
-        <form method="post" action="" class="form-group">
-            {% csrf_token %}
+    <h3 class="display-3">Create an Issue for {{project.name}}</h3>
+    <hr class="mt-0 mb-4">
+    <form method="post" action="" class="form-group">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="exampleIssueSummary1">Summary</label>
+            <input type="text" name="summary" class="form-control" id="exampleIssueSummary1" aria-describedby="summaryHelp" placeholder="Briefly describe your issue." required><br>
 
-            <div class="form-group">
-                <label for="exampleIssueSummary1">Summary</label>
-                <input type="text" name="summary" class="form-control" id="exampleIssueSummary1" aria-describedby="summaryHelp" required><br>
+            <label for="exampleIssueDescription1">Description</label>
+            <textarea class="form-control" name="description" class="form-control" rows="3" placeholder="Now go into detail." required></textarea>
+        </div>
 
-                <label for="exampleIssueDescription1">Description</label>
-                <textarea class="form-control" name="description" class="form-control" rows="3" required></textarea>
+        <div class="form-group">
+            <select name="type" class="selectpicker" id="inlineFormCustomSelectPref" required>
+                <option value="none" selected>Type...</option>
+                <option name="task">task</option>
+                <option name="bug">bug</option>
+            </select>
+            <div class="text-danger">
+                {{error1}}
             </div>
+        </div>
 
-
-
-            <div class="form-group">
-                <select name="type" class="selectpicker" id="inlineFormCustomSelectPref" required>
-                    <option value="none" selected>Type...</option>
-                    <option name="task">task</option>
-                    <option name="bug">bug</option>
-                </select>
-                <div class="text-danger">
-                    {{error1}}
-                </div>
+        <div class="form-group">
+            <select name="priority" class="selectpicker" id="inlineFormCustomSelectPref">
+                <option value="none" selected>Priority...</option>
+                <option name="minor">minor</option>
+                <option name="major">major</option>
+                <option name="blocker">blocker</option>
+            </select>
+            <div class="text-danger">
+                {{error2}}
             </div>
+        </div>
 
-            <div class="form-group">
-                <select name="priority" class="selectpicker" id="inlineFormCustomSelectPref">
-                    <option value="none" selected>Priority...</option>
-                    <option name="minor">minor</option>
-                    <option name="major">major</option>
-                    <option name="blocker">blocker</option>
-                </select>
-                <div class="text-danger">
-                    {{error2}}
-                </div>
+        <div class="form-group">
+            <select name="assignee" class="selectpicker" id="inlineFormCustomSelectPref">
+                <option value="none"selected>Assigned to...</option>
+                {% for member in project.members %}
+                    <option name="{{member.username}}">{{member}}</option>
+                {% endfor %}
+            </select>
+            <div class="text-danger">
+                {{error3}}
             </div>
+        </div>
 
-            <div class="form-group">
-                <select name="assignee" class="selectpicker" id="inlineFormCustomSelectPref">
-                    <option value="none"selected>Assigned to...</option>
-                    {% for member in project.members %}
-                        <option name="{{member.username}}">{{member}}</option>
-                    {% endfor %}
-                </select>
-                <div class="text-danger">
-                    {{error3}}
-                </div>
-            </div>
-
-            <button type="submit" name="save" value="save" class="btn btn-primary my-1">Submit</button>
-        </form>
-
-    {% else %}
-            <p>Login <a href="/login">here.</a></p>
-    {% endif %}
+        <button type="submit" name="save" value="save" class="btn btn-primary my-1">Submit</button>
+    </form>
 {% endblock %}
