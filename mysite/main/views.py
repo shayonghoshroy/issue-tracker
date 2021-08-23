@@ -210,8 +210,52 @@ def index(response, id):
 def home(response):
     authenticate(response)
 
-    data = {'Chrome': 52.9, 'Opera': 1.6, 'Firefox': 27.7}
-    return render(response, "main/home.html", {"data" : data})
+    # loop thru all issues and count status and type by priority
+    assigned = 0
+    in_progress = 0
+    resolved = 0
+
+    minor_task = 0
+    minor_bug = 0
+
+    major_task = 0
+    major_bug = 0
+
+    blocker_task = 0
+    blocker_bug = 0
+
+    for i in Issue.objects.all():
+        # status
+        if i.status == "assigned":
+            assigned += 1
+        elif i.status == "in-progress":
+            in_progress += 1
+        else:
+            resolved += 1
+
+        # type by priority
+        if i.priority == "minor" and i.status != "resolved":
+            if i.type == "task":
+                minor_task += 1
+            else:
+                minor_bug += 1
+        elif i.priority == "major" and i.status != "resolved":
+            if i.type == "task":
+                major_task += 1
+            else:
+                major_bug += 1
+
+        elif i.priority == "blocker" and i.status != "resolved":
+            if i.type == "task":
+                blocker_task += 1
+            else:
+                blocker_bug += 1
+
+
+
+
+    return render(response, "main/home.html", {"assigned":assigned, "in_progress":in_progress, "resolved":resolved,
+        "minor_task":minor_task, "minor_bug":minor_bug, "major_task":major_task, "major_bug":major_bug, "blocker_task":blocker_task, "blocker_bug":blocker_bug})
 
 # user creates todo list
 def create(response):

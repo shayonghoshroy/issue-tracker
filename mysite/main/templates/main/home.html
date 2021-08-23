@@ -12,7 +12,9 @@ Home
 
     <div><canvas id="barChart" width="400" height="100"></canvas></div>
     <div><canvas id="pieChart" width="400" height="100"></canvas></div>
+    <canvas id="bar-chart-grouped" width="800" height="450"></canvas>
 
+    <!-- bar chart -->
     <script>
         var ctx = document.getElementById('barChart').getContext('2d');
         var myChart = new Chart(ctx, {
@@ -51,24 +53,64 @@ Home
         });
     </script>
 
+    <!-- pie chart -->
     <script>
         var ctx = document.getElementById('pieChart').getContext('2d');
         var myChart = new Chart(ctx, {
             type: 'doughnut',
             data: {
-                labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
-                datasets: [{
-                        label: "Population (millions)",
-                            backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
-                                data: [2478,5267,734,784,433]
-            }]
-        },
+                labels: ["assigned", "in-progress", "resolved"],
+                datasets: [
+                    {
+                        label: "Issue Count by Status",
+                        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f"],
+                        data: ["{{assigned}}", "{{in_progress}}", "{{resolved}}"]
+                    }
+                ]
+            },
             options: {
                 title: {
                     display: true,
-                        text: 'Predicted world population (millions) in 2050'
+                        text: 'Status of All Issues'
                     }
                 }
+        });
+    </script>
+
+    <!-- two variable bar chart -->
+    <!-- priority = labels, types are the two data fields -->
+    <script>
+        var ctx = document.getElementById('barChart').getContext('2d');
+        var myChart = new Chart(document.getElementById("bar-chart-grouped"), {
+            type: 'bar',
+            data: {
+              labels: ["minor", "major", "blocker"],
+              datasets: [
+                {
+                  label: "task",
+                  backgroundColor: "#3e95cd",
+                  data: [{{minor_task}}, {{major_task}}, {{blocker_task}}]
+                }, {
+                  label: "bug",
+                  backgroundColor: "#8e5ea2",
+                  data: [{{minor_bug}}, {{major_bug}}, {{blocker_bug}}]
+                }
+              ]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            stepSize: 1,
+                            beginAtZero: true
+                        }
+                    }]
+                },
+              title: {
+                display: true,
+                text: 'Unresolved Issue Types by Priority'
+              }
+            }
         });
     </script>
 {% endblock content %}
