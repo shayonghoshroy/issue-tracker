@@ -205,10 +205,13 @@ def index(response, id):
     #item = ls.item_set.all().get(id=1)
     #return HttpResponse("<h1>%s</h1><br></br><p>%s</p>" % (ls, item))
 '''
+
+# home view
 def home(response):
     authenticate(response)
 
-    return render(response, "main/home.html", {})
+    data = {'Chrome': 52.9, 'Opera': 1.6, 'Firefox': 27.7}
+    return render(response, "main/home.html", {"data" : data})
 
 # user creates todo list
 def create(response):

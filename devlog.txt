@@ -52,9 +52,13 @@ and a multiple selector dropdown that allows people to search and add all projec
 44. Created a user profile model with name and role attributes
 
 
+
+TODO:
+- figure out bootstrap modal pop up form for sign up and file upload
+- create a home page
+
 BIG THINGS TO ADD BEFORE INTERVIEW:
 1. CSS that shit
-- first, we CSS the easy lists
 2. Roles (admin vs developer vs scrum master.....etc....)
  - manager, developer
 3. Search bar
