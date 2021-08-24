@@ -54,6 +54,7 @@ and a multiple selector dropdown that allows people to search and add all projec
 
 
 TODO:
+- prep demo
 - figure out bootstrap modal pop up form for sign up and file upload
 - create a home page
 

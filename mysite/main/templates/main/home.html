@@ -5,18 +5,30 @@ Home
 {% endblock %}
 
 {% block content %}
-
-
     <!-- fixed by using version 2 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
 
-    <div><canvas id="barChart" width="400" height="100"></canvas></div>
-    <div><canvas id="pieChart" width="400" height="100"></canvas></div>
-    <canvas id="bar-chart-grouped" width="800" height="450"></canvas>
+    <div class="row">
+        <div class="column">
+            <div class="chart-container" style="position: relative; height:100vh; width:30vw">
+                <canvas id="pieChart"></canvas>
+            </div>
+        </div>
+        <div class="column">
+            <div class="chart-container" style="position: relative; height:85vh; width:50vw">
+                <canvas id="barChart" ></canvas>
+            <div>
+        </div>
+    </div>
+
+
+
+
 
     <!-- bar chart -->
+    <!--
     <script>
-        var ctx = document.getElementById('barChart').getContext('2d');
+        var ctx = document.getElementById('singleBarChart').getContext('2d');
         var myChart = new Chart(ctx, {
             type: 'bar',
             data: {
@@ -52,6 +64,7 @@ Home
             }
         });
     </script>
+    -->
 
     <!-- pie chart -->
     <script>
@@ -63,13 +76,16 @@ Home
                 datasets: [
                     {
                         label: "Issue Count by Status",
-                        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f"],
+                        backgroundColor: ["#FFCE54", "#AC92EB","#4FC1E8"],
                         data: ["{{assigned}}", "{{in_progress}}", "{{resolved}}"]
                     }
                 ]
             },
             options: {
+                responsive: true,
+                maintainAspectRatio: false,
                 title: {
+                    fontSize: 36,
                     display: true,
                         text: 'Status of All Issues'
                     }
@@ -81,23 +97,25 @@ Home
     <!-- priority = labels, types are the two data fields -->
     <script>
         var ctx = document.getElementById('barChart').getContext('2d');
-        var myChart = new Chart(document.getElementById("bar-chart-grouped"), {
+        var myChart = new Chart(ctx, {
             type: 'bar',
             data: {
               labels: ["minor", "major", "blocker"],
               datasets: [
                 {
                   label: "task",
-                  backgroundColor: "#3e95cd",
+                  backgroundColor: "#A0D568",
                   data: [{{minor_task}}, {{major_task}}, {{blocker_task}}]
                 }, {
                   label: "bug",
-                  backgroundColor: "#8e5ea2",
+                  backgroundColor: "#ED5564",
                   data: [{{minor_bug}}, {{major_bug}}, {{blocker_bug}}]
                 }
               ]
             },
             options: {
+                responsive: true,
+                maintainAspectRatio: false,
                 scales: {
                     yAxes: [{
                         ticks: {
@@ -107,6 +125,7 @@ Home
                     }]
                 },
               title: {
+                fontSize: 36,
                 display: true,
                 text: 'Unresolved Issue Types by Priority'
               }

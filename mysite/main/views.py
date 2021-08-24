@@ -225,31 +225,37 @@ def home(response):
     blocker_bug = 0
 
     for i in Issue.objects.all():
-        # status
-        if i.status == "assigned":
-            assigned += 1
-        elif i.status == "in-progress":
-            in_progress += 1
-        else:
-            resolved += 1
+        members = []
+        members.append(i.assignee.username)
+        members.append(i.assigner.username)
+        user = response.user.username
+        
+        if user in members:
+            # status
+            if i.status == "assigned":
+                assigned += 1
+            elif i.status == "in-progress":
+                in_progress += 1
+            else:
+                resolved += 1
 
-        # type by priority
-        if i.priority == "minor" and i.status != "resolved":
-            if i.type == "task":
-                minor_task += 1
-            else:
-                minor_bug += 1
-        elif i.priority == "major" and i.status != "resolved":
-            if i.type == "task":
-                major_task += 1
-            else:
-                major_bug += 1
+            # type by priority
+            if i.priority == "minor" and i.status != "resolved":
+                if i.type == "task":
+                    minor_task += 1
+                else:
+                    minor_bug += 1
+            elif i.priority == "major" and i.status != "resolved":
+                if i.type == "task":
+                    major_task += 1
+                else:
+                    major_bug += 1
 
-        elif i.priority == "blocker" and i.status != "resolved":
-            if i.type == "task":
-                blocker_task += 1
-            else:
-                blocker_bug += 1
+            elif i.priority == "blocker" and i.status != "resolved":
+                if i.type == "task":
+                    blocker_task += 1
+                else:
+                    blocker_bug += 1
 
 
 
