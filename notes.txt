@@ -67,18 +67,6 @@ p = Project(name="IssueTracker", description="Website that tracks issues.",creat
 # create Issue
 i = Issue(project=Project.objects.get(id=1), type="task", priority="blocker",status="assigned",creator="shayon", assignee="tristan")
 
-### ADMIN
-username = shayon
-email = sghoshroy21@gmail.com
-password = sg12433233
-
-### Account
-username = shayong
-pass = sg12433233
-
-username = caroline
-pass = sg12433233
-
 # create a super user
 python manage.py createsuperuser
 
