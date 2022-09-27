@@ -1,9 +1,9 @@
 [Issue Tracker](https://shayong.pythonanywhere.com/)
 
 <h3>
-Create Projects.</br>
+Create projects.</br>
 Add your teammates.</br>
-Create Issues. 
+Track issues. </br>
 Visualize the status of your project.
 </h3>
 
