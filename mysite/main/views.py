@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 from . models import ToDoList, Item, Project, Issue, Comment, File
 from . forms import CreateNewList, CommentForm, FileForm
 from django.contrib.auth import get_user_model
@@ -10,6 +11,7 @@ import os
 # Create your views here.
 
 # view project by id
+@login_required(login_url='/login/')
 def project_index(response, id):
     authenticate(response)
 
@@ -59,6 +61,7 @@ def project_index(response, id):
     return render(response, "main/home.html", {})
 
 # list all projects belonging to the user
+@login_required(login_url='/login/')
 def project_list(response):
     authenticate(response)
 
@@ -71,6 +74,7 @@ def project_list(response):
     return render(response, "main/project-list.html", {"projects":projects})
 
 # list all issues belonging to the user
+@login_required(login_url='/login/')
 def issue_list(response):
     authenticate(response)
 
@@ -96,6 +100,7 @@ def issue_list(response):
 
 
 # view issue by id
+@login_required(login_url='/login/')
 def issue_index(response, id, issue_id):
     authenticate(response)
 
@@ -207,6 +212,7 @@ def index(response, id):
 '''
 
 # home view
+@login_required(login_url='/login/')
 def home(response):
     authenticate(response)
 
@@ -264,6 +270,7 @@ def home(response):
         "minor_task":minor_task, "minor_bug":minor_bug, "major_task":major_task, "major_bug":major_bug, "blocker_task":blocker_task, "blocker_bug":blocker_bug})
 
 # user creates todo list
+@login_required(login_url='/login/')
 def create(response):
     authenticate(response)
 
@@ -286,6 +293,7 @@ def create(response):
     return render(response, "main/create.html", {"form":form})
 
 # create an issue
+@login_required(login_url='/login/')
 def issue(response, id):
     authenticate(response)
     print(response.POST)
@@ -322,6 +330,7 @@ def issue(response, id):
     return render(response, "main/issue.html", {"project":my_project})
 
 # create a project
+@login_required(login_url='/login/')
 def project(response):
     authenticate(response)
 
@@ -350,6 +359,7 @@ def project(response):
     return render(response, "main/project.html", {"form":form, "users": users})
 
 # list all todo lists
+@login_required(login_url='/login/')
 def view(response):
     authenticate(response)
     return render(response, "main/view.html", {})
